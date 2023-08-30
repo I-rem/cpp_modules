@@ -1,6 +1,3 @@
-#ifndef CONTACT_H
-# define CONTACT_H
-
 class Contact{
 	//Kaydedilmis bir kisinin bos alanlarý olamaz.?
 	string	name;
@@ -9,6 +6,3 @@ class Contact{
 	string	number;
 	string	darkest_secret;
 };
-
-#endif
-
