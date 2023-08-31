@@ -2,18 +2,21 @@
 
 int main(int argc, char **argv)
 {
+	int i;
+	int j;
+
 	if (argc > 1)
 	{
-		int i = 1;
-		int j = 0;
+		i = 1;
 		while (argv[i])
 		{
+			j = 0;
 			while(argv[i][j])
 			{
 				argv[i][j] = toupper(argv[i][j]);
-				std::cout << argv[i][j];
 				j++;
 			}
+			std::cout << argv[i];
 			i++;
 		}
 	}
@@ -22,3 +25,4 @@ int main(int argc, char **argv)
 	std::cout << std::endl;
 	return (0);
 }
+
