@@ -3,7 +3,7 @@
 #include <iostream>
 
 class Contact{
-	//Kaydedilmis bir kisinin bos alanlarý olamaz.? ->.empty ile kontrol edilebilir
+
 	private:
 		std::string	name;
 		std::string	surname;

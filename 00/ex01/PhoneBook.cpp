@@ -45,6 +45,16 @@ void PhoneBook::Add()
 	len++;
 }
 
+std::string PhoneBook::CreateCollumn(std::string string)
+{
+	if (string.length() <= 10)
+		return string;
+	else
+		string = string.substr(0, 9);
+	string.append(".");
+	return string;
+}
+
 void PhoneBook::Search()
 {
 
@@ -56,27 +66,27 @@ void PhoneBook::Search()
 	std::cout << "\n     Index|      Name|   Surname|  Nickname\n";
 
 	int i = 0;
-	std::string string;
+	std::string str;
 	while (i < len)
 	{
 		std::cout << std::setw(10);
   		std::cout << i;
 		std::cout << "|";
 
-		string = contacts[i].GetName();
+		str = CreateCollumn(contacts[i].GetName());
 		std::cout << std::setw(10);
-  		std::cout << string;
+  		std::cout << str;
 		std::cout << "|";
 
-		string = contacts[i].GetSurname();
+		str = CreateCollumn(contacts[i].GetSurname());
 		std::cout << std::setw(10);
-  		std::cout << string;
+  		std::cout << str;
 		std::cout << "|";
 
-		string = contacts[i].GetNickname();
+		str = CreateCollumn(contacts[i].GetNickname());
 		std::cout << std::setw(10);
-  		std::cout << string << std::endl;
-
+  		std::cout << str;
+		std::cout << std::endl;
 		i++;
 	}
 
