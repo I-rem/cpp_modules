@@ -1,6 +1,7 @@
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 #include <iostream>
+
 class Contact{
 	//Kaydedilmis bir kisinin bos alanlarý olamaz.? ->.empty ile kontrol edilebilir
 	private:

@@ -6,6 +6,7 @@
 class PhoneBook{
 	private:
 		Contact contacts[9];
+		int FindIndex();
 	public:
 		PhoneBook();
 		~PhoneBook();
