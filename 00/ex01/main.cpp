@@ -1,4 +1,3 @@
-#include <iostream>
 #include "PhoneBook.hpp"
 
 int	main()
@@ -6,14 +5,14 @@ int	main()
 	PhoneBook phoneBook;
 	std::string	command;
 
-	while (command.std::string::compare("EXIT"))
+	while (command != "EXIT")
 	{
 		std::cout << "Enter a command: ADD, SEARCH or EXIT" << std::endl;
 		std::cin >> command;
-	
-		if (command.std::string::compare("ADD") == 0)
+
+		if (command == "ADD")
 			phoneBook.Add();
-		else if (command.std::string::compare("SEARCH") == 0)
+		else if (command == "SEARCH")
 			phoneBook.Search();
 	}
 	return (0);
