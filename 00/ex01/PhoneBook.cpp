@@ -10,16 +10,11 @@ PhoneBook::~PhoneBook()
 
 }
 
-int	PhoneBook::FindIndex()
+int PhoneBook::FindIndex()
 {
-	int len = 0;
-
-	len = sizeof(contacts) / sizeof(contacts[0]);
-	if (len == 8)
+	if (len >= 8)
 		return 0;
-	else if (len == 0)
-		return len;
-	return len - 1;
+	return len;
 }
 
 void PhoneBook::Add()
@@ -32,32 +27,68 @@ void PhoneBook::Add()
 	contacts[index].SetName(string);
 
 	std::cout<< "\nEnter surname: ";
-	std::getline (std::cin,string);
+	std::getline (std::cin>>std::ws,string);
 	contacts[index].SetSurname(string);
 
 	std::cout<< "\nEnter nickname: ";
-	std::getline (std::cin,string);
+	std::getline (std::cin>>std::ws,string);
 	contacts[index].SetNickname(string);
 
 	std::cout<< "\nEnter phone number: ";
-	std::getline (std::cin,string);
+	std::getline (std::cin>>std::ws,string);
 	contacts[index].SetNumber(string);
 
 	std::cout<< "\nEnter secret:" ;
-	std::getline (std::cin,string);
+	std::getline (std::cin>>std::ws,string);
 	contacts[index].SetSecret(string);
+
+	len++;
 }
 
 void PhoneBook::Search()
 {
-	/*
-Kaydedilen kisileri bir 4 sütun listesi olarak görüntüleyin: dizin, ad, soyadý
-ve takma ad.
-Her sütun 10 karakter genisliginde olmalýdýr. Bir çizgi karakteri (’|’) onlarý
-ayýrýr. Metin saga hizalý olmalýdýr. Metin sütundan daha uzunsa, kýsaltýlmalý
-ve görüntülenebilir son karakter bir nokta (’.’) ile degistirilmelidir.
-Ardýndan, görüntülenecek girdinin dizinini kullanýcýdan tekrar isteyin. Dizin
-aralýk dýsýnda veya yanlýssa, ilgili bir tepki tanýmlayýn. Aksi takdirde, her
-satýrda bir alan olacak sekilde kisi bilgilerini görüntüleyin.
-	*/
+
+	if (len == 0)
+	{
+		std:: cout << "No contacts saved\n";
+		return ;
+	}
+	std::cout << "\n     Index|      Name|   Surname|  Nickname\n";
+
+	int i = 0;
+	std::string string;
+	while (i < len)
+	{
+		std::cout << std::setw(10);
+  		std::cout << i;
+		std::cout << "|";
+
+		string = contacts[i].GetName();
+		std::cout << std::setw(10);
+  		std::cout << string;
+		std::cout << "|";
+
+		string = contacts[i].GetSurname();
+		std::cout << std::setw(10);
+  		std::cout << string;
+		std::cout << "|";
+
+		string = contacts[i].GetNickname();
+		std::cout << std::setw(10);
+  		std::cout << string << std::endl;
+
+		i++;
+	}
+
+	std::cout << "Which index would you like to see?\n";
+	std::cin >> i;
+	if (i >= len || i < 0)
+		std::cout << "Index out of bounds";
+	else
+	{
+		std::cout << "Index: " << i << std::endl;
+		std::cout << "Name: " << contacts[i].GetName() << std::endl;
+		std::cout << "Surname: " << contacts[i].GetSurname() << std::endl;
+		std::cout << "Nickname: " << contacts[i].GetNickname() << std::endl;
+	}
 }
