@@ -1,8 +1,8 @@
 #include "Zombie.hpp"
 
-Zombie::Zombie()
+Zombie::Zombie(): name("default")
 {
-	this->name = "Unnamed";
+
 }
 
 Zombie::Zombie(std::string name)
@@ -20,4 +20,5 @@ void Zombie::announce(void)
 {
 	std::cout<<name<<": BraiiiiiiinnnzzzZ...\n";
 }
+
 
