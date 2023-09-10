@@ -32,12 +32,16 @@ void Harl::error( void )
 
 void Harl::complain( std::string level )
 {
-    /*
-    Bu alýþtýrmanýn amacý, üye iþlevlerine iþaretçiler kullanmaktýr. Bu bir öneri deðil.
-Harl, if/else if/else ormanýný kullanmadan þikayet etmek zorundadýr. Ýki kere düþünmez!
-    */
-    switch(level)
-    {
+    int i = 0;
 
-    }
+   void (Harl::*functions[4])() = {
+        &Harl::debug,
+        &Harl::info,
+        &Harl::warning,
+        &Harl::error
+    };
+   std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    while(levels[i] != level)
+        i++;
+    (this->*functions[i])();
 }
