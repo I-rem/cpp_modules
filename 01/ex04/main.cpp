@@ -16,8 +16,18 @@ int main(int argc, char **argv)
             return 1;
 
         std::string str;
+        std::size_t found;
         while (std::getline(ifs, str))
-            ofs << str << std::endl;
+        {
+            found = str.find(s1);
+            if (found == std::string::npos)
+                ofs << str << std::endl;
+            else
+            {
+                ofs << str.substr(0, found) << s2 << str.substr(found + s2.length(), std::string::npos) << std::endl;
+            }
+        }
+
 
         ifs.close();
         ofs.close();
