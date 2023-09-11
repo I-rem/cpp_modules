@@ -1,50 +1,38 @@
-/*
-Þu andan itibaren, aksi açýkça belirtilmedikçe, tüm sýnýflarýnýz Ortodoks Kanonik
-Form’da tasarlanmalýdýr. Ardýndan, aþaðýdaki dört gerekli üye iþlevini uygulayacaklar:
-• Varsayýlan yapýcý
-• Kopyalama Kurucusu
-• Atama operatörünü kopyalama
-• Yýkýcý
-Split your class code into two files. The header file (.hpp/.h) contains the class
-definition whereas the source file (.cpp) contains the implementation.
-*/
-
-/*
-Þu andan itibaren, aksi açýkça belirtilmedikçe, tüm sýnýflarýnýz Ortodoks Kanonik
-Form’da tasarlanmalýdýr. Ardýndan, aþaðýdaki dört gerekli üye iþlevini uygulayacaklar:
-• Varsayýlan yapýcý
-• Kopyalama Kurucusu
-• Atama operatörünü kopyalama
-• Yýkýcý
-Split your class code into two files. The header file (.hpp/.h) contains the class
-definition whereas the source file (.cpp) contains the implementation.
-*/
-
 #include "Fixed.hpp"
 
-Fixed::Fixed(void)
+Fixed::Fixed()
 {
     std::cout << "Default constructor called" << std::endl;
+    this->num = 0;
 }
 
-Fixed::Fixed(Fixed const & src)
+Fixed::Fixed(const Fixed &src)
 {
     std::cout << "Copy constructor called" << std::endl;
     *this = src;
     return ;
 }
 
-Fixed::Fixed& operator(Fixed const &rhs)
+Fixed& Fixed::operator=(const Fixed &rhs)
 {
-
+    std::cout << "Copy assignment operator called" << std::endl;
+    this->num = rhs.getRawBits();
+    return *this;
 }
 
-Fixed:: void getRawBits()
+int Fixed::getRawBits( void ) const
 {
     std::cout << "getRawBits member function called" << std::endl;
+    return this->num;
 }
 
-Fixed::~Fixed(void)
+void Fixed::setRawBits( int const raw )
+{
+    std::cout << "setRawBits member function called" << std::endl;
+    this->num = raw;
+}
+
+Fixed::~Fixed()
 {
     std::cout << "Destructor called" << std::endl;
 }
