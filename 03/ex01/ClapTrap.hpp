@@ -3,14 +3,16 @@
 #include <iostream>
 class ClapTrap
 {
-    private:
+    protected:
         std::string Name;
-        int HitPoints;
-        int EnergyPoints;
-        int AttackDamage;
+        unsigned int HitPoints;
+        unsigned int EnergyPoints;
+        unsigned int AttackDamage;
     public:
         ClapTrap();
-        ClapTrap(string Name);
+        ClapTrap(std::string Name);
+        ClapTrap(ClapTrap const &src);
+        ~ClapTrap();
         void attack(const std::string& target);
         void takeDamage(unsigned int amount);
         void beRepaired(unsigned int amount);
