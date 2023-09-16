@@ -24,6 +24,16 @@ ClapTrap::ClapTrap(ClapTrap const &src)
     return ;
 }
 
+ClapTrap& ClapTrap::operator=(const ClapTrap &rhs)
+{
+    std::cout << "ClapTrap Copy assignment operator called" << std::endl;
+    this->Name = rhs.Name;
+    this->Name = rhs.HitPoints;
+    this->Name = rhs.EnergyPoints;
+    this->Name = rhs.AttackDamage;
+    return *this;
+}
+
 ClapTrap::~ClapTrap()
 {
     std::cout << "ClapTrap Deconstructor called" << std::endl;

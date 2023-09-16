@@ -25,6 +25,16 @@ FragTrap::FragTrap(FragTrap const &src) : ClapTrap(src)
     return ;
 }
 
+FragTrap& FragTrap::operator=(const FragTrap &rhs)
+{
+    std::cout << "Frag Trap copy assignment operator called" << std::endl;
+    this->Name = rhs.Name;
+    this->Name = rhs.HitPoints;
+    this->Name = rhs.EnergyPoints;
+    this->Name = rhs.AttackDamage;
+    return *this;
+}
+
 FragTrap::~FragTrap()
 {
     std::cout << "FragTrap Deconstructor called" << std::endl;

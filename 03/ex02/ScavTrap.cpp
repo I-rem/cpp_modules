@@ -25,6 +25,17 @@ ScavTrap::ScavTrap(ScavTrap const &src) : ClapTrap(src)
     return ;
 }
 
+ScavTrap& ScavTrap::operator=(const ScavTrap &rhs)
+{
+    std::cout << "ScavTrap Copy assignment operator called" << std::endl;
+    this->Name = rhs.Name;
+    this->Name = rhs.HitPoints;
+    this->Name = rhs.EnergyPoints;
+    this->Name = rhs.AttackDamage;
+    return *this;
+    return *this;
+}
+
 ScavTrap::~ScavTrap()
 {
     std::cout << "ScavTrap Deconstructor called" << std::endl;
