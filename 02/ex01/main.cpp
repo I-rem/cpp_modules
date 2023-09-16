@@ -1,14 +1,3 @@
-/*
-Þu andan itibaren, aksi açýkça belirtilmedikçe, tüm sýnýflarýnýz Ortodoks Kanonik
-Form’da tasarlanmalýdýr. Ardýndan, aþaðýdaki dört gerekli üye iþlevini uygulayacaklar:
-• Varsayýlan yapýcý
-• Kopyalama Kurucusu
-• Atama operatörünü kopyalama
-• Yýkýcý
-Split your class code into two files. The header file (.hpp/.h) contains the class
-definition whereas the source file (.cpp) contains the implementation.
-*/
-
 #include <iostream>
 #include "Fixed.hpp"
 
