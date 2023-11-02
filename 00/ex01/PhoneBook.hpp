@@ -7,7 +7,6 @@
 class PhoneBook{
 	private:
 		Contact contacts[9];
-		int FindIndex();
 		int len;
 		std::string CreateCollumn(std::string);
 	public:
