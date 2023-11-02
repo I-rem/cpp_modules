@@ -10,6 +10,8 @@ int main(int argc, char **argv)
 		i = 1;
 		while (argv[i])
 		{
+			if (i != 1)
+				std::cout << " ";
 			j = 0;
 			while(argv[i][j])
 			{

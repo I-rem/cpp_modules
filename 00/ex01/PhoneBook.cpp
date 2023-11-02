@@ -2,7 +2,7 @@
 
 PhoneBook::PhoneBook()
 {
-
+	len = 0;
 }
 
 PhoneBook::~PhoneBook()
@@ -10,17 +10,10 @@ PhoneBook::~PhoneBook()
 
 }
 
-int PhoneBook::FindIndex()
-{
-	if (len >= 8)
-		return 0;
-	return len;
-}
-
 void PhoneBook::Add()
 {
 	std::string string;
-	int index = FindIndex();
+	int index = len % 8;
 
 	std::cout<< "\nEnter name: ";
 	std::getline (std::cin>>std::ws,string);
@@ -67,7 +60,7 @@ void PhoneBook::Search()
 
 	int i = 0;
 	std::string str;
-	while (i < len)
+	while (i < len && i < 8)
 	{
 		std::cout << std::setw(10);
   		std::cout << i;
@@ -92,8 +85,15 @@ void PhoneBook::Search()
 
 	std::cout << "Which index would you like to see?\n";
 	std::cin >> i;
-	if (i >= len || i < 0)
-		std::cout << "Index out of bounds";
+
+	if (i >= len || i > 7 || i < 0)
+		std::cout << "Index out of bounds\n";
+	else if (std::cin.fail())
+	{
+		std::cout << "Invalid index Error\n";
+		std::cin.clear();
+		exit(1);
+	}
 	else
 	{
 		std::cout << "Index: " << i << std::endl;
