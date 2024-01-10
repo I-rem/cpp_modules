@@ -1,8 +1,20 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(const std::string name, int grade)
+Bureaucrat::Bureaucrat()
 {
 	
+}
+
+Bureaucrat::Bureaucrat(const std::string name, int grade)
+{
+	try
+	{
+	/* do some stuff with bureaucrats */
+	}
+	catch (std::exception & e)
+	{
+	/* handle exception */
+	}
 }
 
 Bureaucrat::~Bureaucrat()
@@ -33,4 +45,23 @@ void Bureaucrat::decrementGrade()
 {
 	if (grade < 150)
 		grade++;
+}
+
+Bureaucrat::Bureaucrat(Bureaucrat const &src)
+{
+    *this = src;
+    return ;
+}
+
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat &rhs)
+{
+    this->name = rhs.name;
+    this->grade = rhs.grade;
+    return *this;
+}
+
+std::ostream & operator<<(std::ostream & os, Bureaucrat bureaucrat)
+{
+    os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
+    return os;
 }

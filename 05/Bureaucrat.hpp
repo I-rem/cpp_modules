@@ -9,11 +9,16 @@ class Bureaucrat {
 		int grade;
 	public:
 		Bureaucrat(const std::string name, int grade);
+		Bureaucrat(Bureaucrat const &src);
+        Bureaucrat& operator=(const Bureaucrat &rhs);
+        Bureaucrat::Bureaucrat();
 		~Bureaucrat();
 		
 		std::string getName();
 		int getGrade();
 		void incrementGrade();
 		void decrementGrade();
+		
 };
+std::ostream & operator<<( std::ostream & o, Bureaucrat bureaucrat);
 #endif
