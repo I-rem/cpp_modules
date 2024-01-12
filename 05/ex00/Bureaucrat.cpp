@@ -8,20 +8,16 @@ const char* Bureaucrat::GradeTooLowException::what() const throw() {
     return "Attempt to instantiate a Bureaucrat with a grade that is too low";
 }
 
-Bureaucrat::Bureaucrat()
+Bureaucrat::Bureaucrat():name("Default"), grade(150)
 {
-	this->name = "Default";
-	this->grade = 150;
 }
 
-Bureaucrat::Bureaucrat(const std::string name, int grade)
+Bureaucrat::Bureaucrat(const std::string name, int grade):name(name), grade(grade)
 {
 	if (grade > 150)
 		throw GradeTooLowException();
 	else if (grade < 1)
 		throw GradeTooHighException();
-	this->name = name;
-	this->grade = grade;
 }
 
 Bureaucrat::~Bureaucrat()
@@ -58,7 +54,7 @@ void Bureaucrat::decrementGrade()
 		throw GradeTooLowException();
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat const &src)
+Bureaucrat::Bureaucrat(Bureaucrat const &src): name(src.name), grade(src.grade)
 {
     *this = src;
     return ;
@@ -66,10 +62,12 @@ Bureaucrat::Bureaucrat(Bureaucrat const &src)
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat &rhs)
 {
-    this->name = rhs.name;
+	if (this == &rhs)
+		return *this;
     this->grade = rhs.grade;
     return *this;
 }
+
 
 std::ostream & operator<<(std::ostream & os, Bureaucrat bureaucrat)
 {
