@@ -1,5 +1,15 @@
 #include "Bureaucrat.hpp"
 
+const char* Bureaucrat::GradeTooHighException: public exception
+{
+	return "Attempt to instantiate a Bureaucrat with a grade that is too high";
+}
+
+const char* Bureaucrat::GradeTooLowException: public exception
+{
+	return "Attempt to instantiate a Bureaucrat with a grade that is too high";
+}
+
 Bureaucrat::Bureaucrat()
 {
 	
@@ -38,13 +48,17 @@ int Bureaucrat::getGrade()
 void Bureaucrat::incrementGrade()
 {
 	if (grade > 1)
-		grade--;	
+		grade--;
+	else 
+		throw tooHigh();
 }
 
 void Bureaucrat::decrementGrade()
 {
 	if (grade < 150)
 		grade++;
+	else
+		throw tooLow();
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &src)

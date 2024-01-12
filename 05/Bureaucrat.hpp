@@ -2,6 +2,7 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
+#include <exception>
 
 class Bureaucrat {
 	private:
@@ -19,6 +20,16 @@ class Bureaucrat {
 		void incrementGrade();
 		void decrementGrade();
 		
+		class GradeTooHighException: public exception
+		{
+  			virtual const char* what() const throw();
+		} tooHigh;
+
+		class GradeTooLowException: public exception
+		{
+  			virtual const char* what() const throw();
+		} tooLow;	
 };
+
 std::ostream & operator<<( std::ostream & o, Bureaucrat bureaucrat);
 #endif
