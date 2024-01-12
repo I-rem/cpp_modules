@@ -10,6 +10,7 @@ const char* Form::GradeTooLowException::what() const throw() {
 
 Form::Form():name("Default"), sign_grade(150), exec_grade(150), is_signed(false)
 {
+	
 }
 
 Form::Form(const std::string name, int grade):name(name), grade(grade), is_signed(is_signed)
@@ -23,6 +24,14 @@ Form::Form(const std::string name, int grade):name(name), grade(grade), is_signe
 Form::~Form()
 {
 
+}
+
+void Form::beSigned(Bureaucrat bureaucrat)
+{
+	 if (bureaucrat.getGrade() <= signGrade)
+        signedStatus = true;
+	else
+        throw GradeTooLowException();
 }
 
 std::string Form::getName()

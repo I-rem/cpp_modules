@@ -21,7 +21,7 @@ class Form {
 	    std::string getName();
 	    int getSignGrade();
 	    int getExecGrade();
-	    void signForm();
+	    void beSigned(Bureaucrat bureaucrat);
 	
 	    class GradeTooHighException : public std::exception {
 	    public:

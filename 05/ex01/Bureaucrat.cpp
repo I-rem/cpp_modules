@@ -38,6 +38,16 @@ int Bureaucrat::getGrade()
 //Remember. Since grade 1 is the highest one and 150 the lowest,
 //incrementing a grade 3 should give a grade 2 to the bureaucrat.
 
+void Bureaucrat::signForm(Form form)
+{
+	if (form.isSigned) 
+        std::cout << bureaucrat.getName() << " signed " << name << std::endl;
+    else 
+        std::cout << bureaucrat.getName() << " couldn't sign " << name
+                  << " because form is not signed or grade is too low." << std::endl;
+
+}
+
 void Bureaucrat::incrementGrade()
 {
 	if (this->grade > 1)
