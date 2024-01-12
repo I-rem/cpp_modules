@@ -5,31 +5,34 @@
 #include <exception>
 
 class Bureaucrat {
-	private:
-		const string name;
-		int grade;
-	public:
-		Bureaucrat(const std::string name, int grade);
-		Bureaucrat(Bureaucrat const &src);
-        Bureaucrat& operator=(const Bureaucrat &rhs);
-        Bureaucrat::Bureaucrat();
-		~Bureaucrat();
-		
-		std::string getName();
-		int getGrade();
-		void incrementGrade();
-		void decrementGrade();
-		
-		class GradeTooHighException: public exception
-		{
-  			virtual const char* what() const throw();
-		} tooHigh;
+private:
+    std::string name;
+    int grade;
 
-		class GradeTooLowException: public exception
-		{
-  			virtual const char* what() const throw();
-		} tooLow;	
+public:
+    Bureaucrat(const std::string name, int grade);
+    Bureaucrat(Bureaucrat const &src);
+    Bureaucrat &operator=(const Bureaucrat &rhs);
+    Bureaucrat();
+    ~Bureaucrat();
+
+    std::string getName();
+    int getGrade();
+    void incrementGrade();
+    void decrementGrade();
+
+    class GradeTooHighException : public std::exception {
+    public:
+        virtual const char *what() const throw();
+    };
+
+    class GradeTooLowException : public std::exception {
+    public:
+        virtual const char *what() const throw();
+    };
 };
 
-std::ostream & operator<<( std::ostream & o, Bureaucrat bureaucrat);
+std::ostream &operator<<(std::ostream &o, Bureaucrat bureaucrat);
+
 #endif
+

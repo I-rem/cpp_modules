@@ -1,37 +1,34 @@
 #include "Bureaucrat.hpp"
 
-const char* Bureaucrat::GradeTooHighException: public exception
-{
-	return "Attempt to instantiate a Bureaucrat with a grade that is too high";
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
+    return "Attempt to instantiate a Bureaucrat with a grade that is too high";
 }
 
-const char* Bureaucrat::GradeTooLowException: public exception
-{
-	return "Attempt to instantiate a Bureaucrat with a grade that is too high";
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
+    return "Attempt to instantiate a Bureaucrat with a grade that is too low";
 }
 
 Bureaucrat::Bureaucrat()
 {
-	
+	this->name = "Default";
+	this->grade = 150;
 }
 
 Bureaucrat::Bureaucrat(const std::string name, int grade)
 {
-	try
-	{
-	/* do some stuff with bureaucrats */
-	}
-	catch (std::exception & e)
-	{
-	/* handle exception */
-	}
+	if (grade > 150)
+		throw GradeTooLowException();
+	else if (grade < 1)
+		throw GradeTooHighException();
+	this->name = name;
+	this->grade = grade;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	
+
 }
-		
+
 std::string Bureaucrat::getName()
 {
 	return this->name;
@@ -47,18 +44,18 @@ int Bureaucrat::getGrade()
 
 void Bureaucrat::incrementGrade()
 {
-	if (grade > 1)
-		grade--;
-	else 
-		throw tooHigh();
+	if (this->grade > 1)
+		this->grade--;
+	else
+		throw GradeTooHighException();
 }
 
 void Bureaucrat::decrementGrade()
 {
-	if (grade < 150)
-		grade++;
+	if (this->grade < 150)
+		this->grade++;
 	else
-		throw tooLow();
+		throw GradeTooLowException();
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &src)
