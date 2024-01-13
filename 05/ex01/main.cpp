@@ -9,7 +9,7 @@ int main() {
         Bureaucrat lowGradeBureaucrat("Low Grade", 150);
         std::cout << lowGradeBureaucrat << std::endl;
 
-        Form form("Form", 50, 25);
+        Form form("Form1", 50, 25);
         std::cout << form << std::endl;
 
         highGradeBureaucrat.signForm(form);
