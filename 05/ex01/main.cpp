@@ -10,13 +10,16 @@ int main() {
         std::cout << lowGradeBureaucrat << std::endl;
 
         Form form("Form1", 50, 25);
+        //Form form2 ("FormBad", -3, 10);
+        //Form form3 ("FormBad2", 10, 151);
         std::cout << form << std::endl;
+
+        //form.beSigned(lowGradeBureaucrat);
+        lowGradeBureaucrat.signForm(form);
 
         highGradeBureaucrat.signForm(form);
         form.beSigned(highGradeBureaucrat);
-        highGradeBureaucrat.signForm(form);
 
-        lowGradeBureaucrat.signForm(form);
     } catch (std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
     }
