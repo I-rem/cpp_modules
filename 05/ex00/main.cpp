@@ -14,8 +14,8 @@ int main() {
          //Bureaucrat1.incrementGrade();
          //Bureaucrat2.decrementGrade();
 
-         //Bureaucrat Bureaucrat4("Bureaucrat_4", 200);
-         Bureaucrat Bureaucrat4("Bureaucrat_4", 0);
+         Bureaucrat Bureaucrat4("Bureaucrat_4", 200);
+         //Bureaucrat Bureaucrat4("Bureaucrat_4", 0);
     } catch (std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
     }
