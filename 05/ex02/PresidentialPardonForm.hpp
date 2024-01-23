@@ -13,11 +13,11 @@ public:
     PresidentialPardonForm(const PresidentialPardonForm& other);
     ~PresidentialPardonForm();
 
-    PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
-	
+    PresidentialPardonForm& operator=(const PresidentialPardonForm &rhs);
+
 	const std::string &getTarget() const;
     virtual void execute(const Bureaucrat& executor) const;
-    
+
 private:
     const std::string target;
 };

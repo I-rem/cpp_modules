@@ -3,6 +3,8 @@
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include <cstdlib>
+
 class Bureaucrat;
 class AForm;
 
@@ -10,7 +12,7 @@ class RobotomyRequestForm : public AForm {
 public:
 	RobotomyRequestForm();
     RobotomyRequestForm(const std::string& target);
-    RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
+    RobotomyRequestForm& operator=(const RobotomyRequestForm& rhs);
     RobotomyRequestForm(const RobotomyRequestForm& other);
     virtual ~RobotomyRequestForm();
 
@@ -19,7 +21,7 @@ public:
 
 private:
     const std::string target;
-    
+
 };
 
 #endif
