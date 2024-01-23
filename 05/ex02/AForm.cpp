@@ -8,6 +8,10 @@ const char* AForm::GradeTooLowException::what() const throw() {
     return "Attempt to instantiate a Form with a grade that is too low";
 }
 
+const char* AForm::NotSignedException::what() const throw() {
+    return "Form not signed";
+}
+
 AForm::AForm():name("Default"), sign_grade(150), exec_grade(150), is_signed(false)
 {
 
