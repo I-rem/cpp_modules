@@ -1,26 +1,32 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main() {
-    try {
-        Bureaucrat highGradeBureaucrat("High Grade", 1);
-        std::cout << highGradeBureaucrat << std::endl;
+   try {
+        Bureaucrat highGradeBureaucrat("John Doe", 1);
 
-        Bureaucrat lowGradeBureaucrat("Low Grade", 150);
-        std::cout << lowGradeBureaucrat << std::endl;
+        ShrubberyCreationForm shrubberyForm("Garden");
+        RobotomyRequestForm robotomyForm("Target");
+        PresidentialPardonForm pardonForm("Criminal");
 
-        Form form("Form", 50, 25);
-        std::cout << form << std::endl;
+        highGradeBureaucrat.signForm(shrubberyForm);
+        highGradeBureaucrat.signForm(robotomyForm);
+        highGradeBureaucrat.signForm(pardonForm);
 
-        highGradeBureaucrat.signForm(form);
-        form.beSigned(highGradeBureaucrat);
-        highGradeBureaucrat.signForm(form);
+        highGradeBureaucrat.executeForm(shrubberyForm);
+        highGradeBureaucrat.executeForm(robotomyForm);
+        highGradeBureaucrat.executeForm(pardonForm);
 
-        lowGradeBureaucrat.signForm(form);
-    } catch (std::exception& e) {
-        std::cerr << "Exception: " << e.what() << std::endl;
+        Bureaucrat lowGradeBureaucrat("Low", 100);
+        lowGradeBureaucrat.signForm(shrubberyForm);
+        lowGradeBureaucrat.executeForm(shrubberyForm);
+    } catch (const std::exception &e) {
+        std::cerr << "Exception caught: " << e.what() << std::endl;
     }
 
     return 0;
 }
+
 

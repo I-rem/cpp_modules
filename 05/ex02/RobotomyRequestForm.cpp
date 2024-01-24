@@ -17,13 +17,31 @@ const std::string &RobotomyRequestForm::getTarget() const {
     return target;
 }
 
-RobotomyRequestForm::RobotomyRequestForm::operator=(const RobotomyRequestForm &rhs): target(rhs.getTarget())
+void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
+    if (!getIsSigned())
+        throw AForm::NotSignedException();
+
+    if (executor.getGrade() > getExecGrade())
+        throw AForm::GradeTooLowException();
+
+    std::cout << "Making drilling noises..." << std::endl;
+
+    if (std::rand() % 2 == 0)
+        std::cout << target << " has been robotomized successfully!" << std::endl;
+    else
+        std::cout << "Robotomy failed for target: " << target << std::endl;
+}
+
+ RobotomyRequestForm&  RobotomyRequestForm::operator=(const RobotomyRequestForm &rhs)
 {
+     if (this == &rhs)
+		return *this;
     return *this;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &src): target(src.getTarget())
+RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &src): AForm(src.getName(), src.getSignGrade(), src.getExecGrade()), target(src.getTarget())
 {
     *this = src;
     return ;
 }
+
