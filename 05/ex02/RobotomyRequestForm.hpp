@@ -4,7 +4,7 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include <cstdlib>
-
+#include <ctime>
 class Bureaucrat;
 class AForm;
 

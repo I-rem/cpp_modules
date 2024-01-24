@@ -16,15 +16,15 @@ class AForm {
 	    AForm(AForm const &src);
 	    AForm &operator=(const AForm &rhs);
 	    AForm();
-	    ~AForm();
+	    virtual ~AForm();
 
-	    std::string getName();
-	    int getSignGrade();
-	    int getExecGrade();
-        bool getIsSigned();
+	    std::string getName() const;
+	    int getSignGrade() const;
+	    int getExecGrade() const;
+        bool getIsSigned() const;
 	    void beSigned(Bureaucrat bureaucrat);
 
-        virtual void execute(Bureaucrat &executor) const = 0;
+        virtual void execute(Bureaucrat const & executor) const = 0;
 
 		class GradeTooLowException : public std::exception
         {
@@ -44,7 +44,7 @@ class AForm {
         };
 };
 
-std::ostream &operator<<(std::ostream &o, AForm bureaucrat);
+std::ostream &operator<<(std::ostream &os, const AForm &form);
 
 #endif
 

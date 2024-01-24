@@ -18,11 +18,12 @@ public:
     Bureaucrat();
     ~Bureaucrat();
 
-    std::string getName();
-    int getGrade();
+    std::string getName() const;
+    int getGrade() const;
     void incrementGrade();
     void decrementGrade();
-	void signForm(AForm form);
+	void signForm(AForm &form);
+    void executeForm(AForm const & form);
 
     class GradeTooHighException : public std::exception {
     public:
