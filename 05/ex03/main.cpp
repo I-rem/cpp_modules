@@ -1,26 +1,42 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "Intern.hpp"
 
-int main() {
-    try {
-        Bureaucrat highGradeBureaucrat("High Grade", 1);
-        std::cout << highGradeBureaucrat << std::endl;
+int main(void)
+{
+	Intern		bob;
+	AForm		*form;
+	Bureaucrat	karen("Karen", 50);
 
-        Bureaucrat lowGradeBureaucrat("Low Grade", 150);
-        std::cout << lowGradeBureaucrat << std::endl;
+	try
+	{
+		form = bob.makeForm("robotomy request", "Alice");
+		delete form;
+		form = bob.makeForm("shrubbery creation", "Charlie");
+		delete form;
+		form = bob.makeForm("presidential pardon", "David");
+		delete form;
+		form = bob.makeForm("random request", "Elisa");
+		delete form;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Caught exception: " << e.what() << std::endl;
+	}
 
-        Form form("Form", 50, 25);
-        std::cout << form << std::endl;
-
-        highGradeBureaucrat.signForm(form);
-        form.beSigned(highGradeBureaucrat);
-        highGradeBureaucrat.signForm(form);
-
-        lowGradeBureaucrat.signForm(form);
-    } catch (std::exception& e) {
-        std::cerr << "Exception: " << e.what() << std::endl;
-    }
-
-    return 0;
+	// Test some Actions with available form
+	std::cout << "------------------------------------" << std::endl;
+	form = bob.makeForm("shrubbery creation", "Fred");
+	form->beSigned(karen);
+	karen.executeForm(*form);
+	delete form;
+	std::cout << "------------------------------------" << std::endl;
+	form = bob.makeForm("presidential pardon", "Georgia");
+	karen.signForm(*form);
+	karen.executeForm(*form);
+	delete form;
+	return (0);
 }
+
+
 
