@@ -5,19 +5,19 @@
 #include <limits>
 
 class ScalarConverter {
-private:
-    const std::string name;
-    int grade;
-
 public:
-    ScalarConverter(const std::string name, int grade);
+    ScalarConverter();
     ScalarConverter(ScalarConverter const &src);
     ScalarConverter &operator=(const ScalarConverter &rhs);
-    ScalarConverter();
     ~ScalarConverter();
+    
+    static void convert(const std::string &str);
+    
+    static char toChar(const std::string& str);
+    static int toInt(const std::string& str);
+    static float toFloat(const std::string& str);
+    static double toDouble(const std::string& str);
 };
-
-std::ostream &operator<<(std::ostream &o, ScalarConverter bureaucrat);
 
 #endif
 

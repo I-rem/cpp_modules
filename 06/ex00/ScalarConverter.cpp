@@ -1,20 +1,16 @@
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter():name("Default"), grade(150)
+ScalarConverter::ScalarConverter()
 {
 }
 
-ScalarConverter::ScalarConverter(const std::string name, int grade):name(name), grade(grade)
-{
-
-}
 
 ScalarConverter::~ScalarConverter()
 {
 
 }
 
-ScalarConverter::ScalarConverter(ScalarConverter const &src): name(src.name), grade(src.grade)
+ScalarConverter::ScalarConverter(ScalarConverter const &src)
 {
     *this = src;
     return ;
@@ -22,15 +18,32 @@ ScalarConverter::ScalarConverter(ScalarConverter const &src): name(src.name), gr
 
 ScalarConverter& ScalarConverter::operator=(const ScalarConverter &rhs)
 {
-	if (this == &rhs)
-		return *this;
-    this->grade = rhs.grade;
+	if (this != &rhs)
+		*this = rhs;
     return *this;
 }
 
-
-std::ostream & operator<<(std::ostream & os, ScalarConverter bureaucrat)
+void ScalarConverter::convert(const string &arg)
 {
-    os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
-    return os;
+	
+}
+
+char ScalarConverter::toChar(const std::string& str)
+{
+	
+}
+
+int ScalarConverter::toInt(const std::string& str)
+{
+	
+}
+
+float ScalarConverter::toFloat(const std::string& str)
+{
+	
+}
+
+double ScalarConverter::toDouble(const std::string& str)
+{
+	
 }
