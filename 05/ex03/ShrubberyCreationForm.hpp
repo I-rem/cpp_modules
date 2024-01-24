@@ -17,7 +17,7 @@ public:
     ShrubberyCreationForm(const ShrubberyCreationForm& other);
 
 	const std::string &getTarget() const;
-    void execute(const Bureaucrat& executor) const;
+    void execute(Bureaucrat const & executor) const;
 
 private:
     const std::string target;
@@ -25,4 +25,4 @@ private:
 };
 
 #endif
-s
+

@@ -25,12 +25,12 @@ Bureaucrat::~Bureaucrat()
 
 }
 
-std::string Bureaucrat::getName()
+std::string Bureaucrat::getName() const
 {
 	return this->name;
 }
 
-int Bureaucrat::getGrade()
+int Bureaucrat::getGrade() const
 {
 	return this->grade;
 }
@@ -38,7 +38,7 @@ int Bureaucrat::getGrade()
 //Remember. Since grade 1 is the highest one and 150 the lowest,
 //incrementing a grade 3 should give a grade 2 to the bureaucrat.
 
-void Bureaucrat::signForm(AForm form)
+void Bureaucrat::signForm(AForm &form)
 {
 	try{
 		form.beSigned(*this);
@@ -50,6 +50,18 @@ void Bureaucrat::signForm(AForm form)
 	}
 }
 
+void Bureaucrat::executeForm(AForm const & form){
+	try
+	{
+		form.execute(*this);
+		std::cout << this->getName() << " executed " << form.getName() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << this->getName() << " couldn't execute " << form.getName() << std::endl;
+	}
+
+}
 void Bureaucrat::incrementGrade()
 {
 	if (this->grade > 1)

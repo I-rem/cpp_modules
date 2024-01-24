@@ -12,6 +12,11 @@ const char* AForm::NotSignedException::what() const throw() {
     return "Form not signed";
 }
 
+char const	*AForm::InvalidFormException::what(void) const throw()
+{
+	return ("Invalid Form Request");
+}
+
 AForm::AForm():name("Default"), sign_grade(150), exec_grade(150), is_signed(false)
 {
 
@@ -38,22 +43,22 @@ void AForm::beSigned(Bureaucrat bureaucrat)
         throw GradeTooLowException();
 }
 
-std::string AForm::getName()
+std::string AForm::getName() const
 {
 	return this->name;
 }
 
-int AForm::getSignGrade()
+int AForm::getSignGrade() const
 {
 	return this->sign_grade;
 }
 
-int AForm::getExecGrade()
+int AForm::getExecGrade() const
 {
 	return this->exec_grade;
 }
 
-bool AForm::getIsSigned()
+bool AForm::getIsSigned() const
 {
 	return this->is_signed;
 }
@@ -73,7 +78,7 @@ AForm& AForm::operator=(const AForm &rhs)
 }
 
 
-std::ostream & operator<<(std::ostream & os, AForm form)
+std::ostream & operator<<(std::ostream & os, AForm &form)
 {
     os << form.getName() << ", form sign grade: " << form.getSignGrade() << ", form execution grade: " << form.getExecGrade() << ", sign status: " << form.getIsSigned() << std::endl;
     return os;
