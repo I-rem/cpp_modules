@@ -28,22 +28,41 @@ void ScalarConverter::convert(const string &arg)
 	
 }
 
-char ScalarConverter::toChar(const std::string& str)
-{
-	
+char ScalarConverter::toChar(const std::string& str) {
+    if (str.length() == 1 && isprint(str[0])) {
+        return str[0];
+    } else {
+        throw std::invalid_argument("Invalid char literal");
+    }
 }
 
-int ScalarConverter::toInt(const std::string& str)
-{
-	
+int ScalarConverter::toInt(const std::string& str) {
+    std::istringstream iss(str);
+    int result;
+    iss >> result;
+    if (iss.fail() || !iss.eof()) {
+        throw std::invalid_argument("Conversion to int failed");
+    }
+    return result;
 }
 
-float ScalarConverter::toFloat(const std::string& str)
-{
-	
+float ScalarConverter::toFloat(const std::string& str) {
+    std::istringstream iss(str);
+    float result;
+    iss >> result;
+    if (iss.fail() || !iss.eof()) {
+        throw std::invalid_argument("Conversion to float failed");
+    }
+    return result;
 }
 
-double ScalarConverter::toDouble(const std::string& str)
-{
-	
+double ScalarConverter::toDouble(const std::string& str) {
+    std::istringstream iss(str);
+    double result;
+    iss >> result;
+    if (iss.fail() || !iss.eof()) {
+        throw std::invalid_argument("Conversion to double failed");
+    }
+    return result;
 }
+

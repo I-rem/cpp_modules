@@ -1,23 +1,24 @@
-#include "Bureaucrat.hpp"
+#include "ScalarConverter.hpp"
 
 int main() {
     try {
-        Bureaucrat Bureaucrat1("Bureaucrat_1", 1);
-        std::cout << Bureaucrat1 << std::endl;
+        char charLiteral = ScalarConverter::toChar("A");
+        int intLiteral = ScalarConverter::toInt("42");
+        float floatLiteral = ScalarConverter::toFloat("3.14");
+        double doubleLiteral = ScalarConverter::toDouble("2.718");
 
-        Bureaucrat Bureaucrat2("Bureaucrat_2", 150);
-        std::cout << Bureaucrat2 << std::endl;
+        std::cout << "Char: " << charLiteral << std::endl;
+        std::cout << "Int: " << intLiteral << std::endl;
+        std::cout << "Float: " << floatLiteral << std::endl;
+        std::cout << "Double: " << doubleLiteral << std::endl;
 
-        Bureaucrat Bureaucrat3("Bureaucrat_3", 75);
-        std::cout << Bureaucrat3 << std::endl;
+        char invalidChar = ScalarConverter::toChar("XYZ");
+        int invalidInt = ScalarConverter::toInt("abc");
 
-         //Bureaucrat1.incrementGrade();
-         //Bureaucrat2.decrementGrade();
-
-         //Bureaucrat Bureaucrat4("Bureaucrat_4", 200);
-         Bureaucrat Bureaucrat4("Bureaucrat_4", 0);
-    } catch (std::exception& e) {
-        std::cerr << "Exception: " << e.what() << std::endl;
+        std::cout << "Invalid Char: " << invalidChar << std::endl;
+        std::cout << "Invalid Int: " << invalidInt << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
     }
 
     return 0;
