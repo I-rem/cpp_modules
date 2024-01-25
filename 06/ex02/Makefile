@@ -1,5 +1,5 @@
 NAME = Identify
-SRCS =	main.cpp A.cpp B.cpp Base.cpp C.cpp
+SRCS =	main.cpp Base.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
