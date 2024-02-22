@@ -1,15 +1,11 @@
-#ifndef EX00_BITCOINEXCHANGE_HPP_
-#define EX00_BITCOINEXCHANGE_HPP_
+#ifndef BITCOINEXCHANGE_HPP
+#define BITCOINEXCHANGE_HPP
 
 #include <string>
 #include <map>
 #include <sstream>
-#include <fstream>
-#include <iostream>
-#include <algorithm>
 
-class BitcoinExchange
-{
+class BitcoinExchange {
 public:
 	BitcoinExchange(const std::string &filename);
 	void ProcessInput(const std::string &filename);
