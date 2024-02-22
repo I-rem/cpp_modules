@@ -57,3 +57,8 @@ void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterat
     numbers.insert(numbers.end(), begin, end);
 }
 
+void Span::fillRand() {
+	srand(time(NULL));
+	for (unsigned int i = 0; i < N; i++)
+		numbers.push_back(rand());
+}

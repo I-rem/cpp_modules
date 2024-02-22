@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <stdexcept>
+#include <stdlib.h>
 
 class Span {
 private:
@@ -18,6 +19,7 @@ public:
 	Span& operator=(const Span& var);
     ~Span();
 
+    void fillRand();
     void addNumber(int num);
     int shortestSpan();
     int longestSpan();
