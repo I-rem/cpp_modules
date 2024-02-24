@@ -5,6 +5,7 @@
 #include <iostream>
 #include <algorithm>
 #include <sstream>
+
 BitcoinExchange::BitcoinExchange(const std::string& filename) {
 	std::ifstream file(filename.c_str());
 	std::string line;
@@ -83,10 +84,12 @@ bool BitcoinExchange::ValidateDate(const std::string& date) {
 }
 
 bool BitcoinExchange::ValidateValue(const double &value) {
-	if (value < 0 || value > 1000) {
-		std::cerr << "Error: Value "
-			  << value
-			  << " is not a positive number between 0 and 1000.\n";
+	if (value < 0 || value > 1000)
+	{
+		if (value < 0)
+			std::cerr << "Error: too small a number. " << std::endl;
+		else if (value > 1000)
+			std::cerr << "Error: too large a number. " << std::endl;
 		return false;
 	}
 	return true;
@@ -95,38 +98,47 @@ bool BitcoinExchange::ValidateValue(const double &value) {
 void BitcoinExchange::ProcessInput(const std::string &filename) {
     std::ifstream file(filename.c_str());
     std::string line;
-    std::getline(file, line);
+    std::getline(file, line); // Skip the header line
 
     while (std::getline(file, line)) {
-        std::istringstream ss(line);
-
-        std::string data;
-        ss >> data;
-
-        size_t delimiter_pos = data.find_first_of("|,");
-        if (delimiter_pos == std::string::npos) {
-            std::cerr << "Error: Unable to find delimiter in line => " << line << '\n';
+        if (line.empty())
+		{
+            std::cerr << "Error: Empty line encountered.\n";
             continue;
         }
 
-        std::string date = data.substr(0, delimiter_pos);
-        std::string value_str = data.substr(delimiter_pos + 1);
+
+        size_t delimiter_pos_pipe = line.find('|');
+        size_t delimiter_pos_comma = line.find(',');
+
+
+        if (delimiter_pos_pipe == std::string::npos && delimiter_pos_comma == std::string::npos)
+		{
+            std::cerr << "Error: bad input => " << line << '\n';
+            continue;
+        }
+
+        size_t delimiter_pos;
+        if (delimiter_pos_pipe != std::string::npos && delimiter_pos_comma != std::string::npos)
+            delimiter_pos = std::min(delimiter_pos_pipe, delimiter_pos_comma);
+		else if (delimiter_pos_pipe != std::string::npos)
+            delimiter_pos = delimiter_pos_pipe;
+		else
+            delimiter_pos = delimiter_pos_comma;
+
+        std::string date = line.substr(0, delimiter_pos);
+        std::string value_str = line.substr(delimiter_pos + 1);
 
         double value;
-        std::istringstream value_ss(value_str);
-        if (!(value_ss >> value)) {
-            std::cerr << "Error: Invalid value format in line => " << line << '\n';
-            continue;
-        }
+        std::istringstream(value_str) >> value;
 
         if (!ValidateDate(date)) {
             std::cerr << "Error: Invalid date format in line => " << line << '\n';
             continue;
         }
 
-        if (!ValidateValue(value)) {
+        if (!ValidateValue(value))
             continue;
-        }
 
         double exchangeRate = GetExchangeRate(date);
         if (exchangeRate == -1.0) {
@@ -136,4 +148,17 @@ void BitcoinExchange::ProcessInput(const std::string &filename) {
 
         std::cout << date << " => " << value << " = " << value * exchangeRate << '\n';
     }
+}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &rhs)
+{
+    data_ = rhs.data_;
+}
+
+BitcoinExchange::~BitcoinExchange() {}
+
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &rhs) {
+    if (this != &rhs)
+        data_ = rhs.data_;
+    return *this;
 }

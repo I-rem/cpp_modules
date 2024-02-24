@@ -8,10 +8,13 @@
 class BitcoinExchange {
 public:
 	BitcoinExchange(const std::string &filename);
+	BitcoinExchange(const BitcoinExchange &rhs);
+	BitcoinExchange& operator=(const BitcoinExchange &rhs);
+	~BitcoinExchange();
+
 	void ProcessInput(const std::string &filename);
 private:
 	BitcoinExchange();
-	BitcoinExchange(const BitcoinExchange &rhs);
 
 	std::map<std::string, double> data_;
 	double GetExchangeRate(const std::string &date);
